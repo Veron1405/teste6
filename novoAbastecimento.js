@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, TextInput, Modal, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView, TextInput, Modal, TouchableWithoutFeedback, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import backgroundImage from './assets/background.png';
+import adicionarImagem from './assets/adicionar.png'; // Importe a imagem adicionar.png
 import NewItem from './novoAbastecimento'; // Importe o novo componente
 
 export default function App() {
-  const [items, setItems] = useState([]); // Estado para gerenciar os containersF
+  const [items, setItems] = useState([]); // Estado para gerenciar os containers
   const [valueText, setValueText] = useState(''); // Estado para o texto do campo Valor
   const [dateText, setDateText] = useState(''); // Estado para o texto do campo Data
   const [isInputVisible, setIsInputVisible] = useState(false); // Estado para controlar a visibilidade do campo de entrada
@@ -67,7 +68,7 @@ export default function App() {
         <View style={styles.bottomContainer}>
           <TouchableOpacity onPress={() => setIsInputVisible(true)} style={styles.addButtonWrapper}>
             <View style={styles.addButtonContainer}>
-              <Text style={styles.addButtonText}>+</Text>
+              <Image source={adicionarImagem} style={styles.addButtonImage} />
             </View>
           </TouchableOpacity>
         </View>
@@ -199,9 +200,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginBottom: 40,
   },
-  addButtonText: {
-    color: '#000',
-    fontSize: 30,
+  addButtonImage: {
+    width: 130, // Defina o tamanho da imagem
+    height: 130,
+    resizeMode: 'contain', // Para garantir que a imagem se encaixe adequadamente
   },
   bottomWrapper: {
     position: 'absolute',
@@ -222,8 +224,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     alignItems: 'center',
-    flexDirection: 'row', // Adicionado para alinhar os ícones horizontalmente
-    justifyContent: 'space-around', // Adicionado para distribuir o espaço igualmente
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   input: {
     width: '100%',
@@ -256,7 +258,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: 10,
     alignItems: 'center',
-    justifyContent: ''
   },
   centeredContainerText: {
     display: 'flex',
@@ -274,6 +275,6 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 10,
-  }
+  },
 });
+
